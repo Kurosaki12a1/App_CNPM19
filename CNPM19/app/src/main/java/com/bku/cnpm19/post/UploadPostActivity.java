@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bku.cnpm19.MainScreenActivity;
 import com.bku.cnpm19.info.ImageUploadInfo;
 import com.bku.cnpm19.info.PostInfo;
 import com.bku.cnpm19.R;
@@ -59,7 +61,7 @@ public class UploadPostActivity extends AppCompatActivity {
 
     ProgressDialog progressDialog ;
 
-    private ImageView imagePost;
+    private ImageView imagePost,backArrow;
     private EditText Caption;
     private TextView confirm;
 
@@ -86,7 +88,7 @@ public class UploadPostActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference(Database_Path);
         databaseReference2nd=FirebaseDatabase.getInstance().getReference(Post_Path);
         databaseReference3rd=FirebaseDatabase.getInstance().getReference(Image_Of_Post);
-
+        backArrow=(ImageView)findViewById(R.id.ivBackArrow);
         postID=databaseReference3rd.push().getKey();
         storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -103,7 +105,13 @@ public class UploadPostActivity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Please Select Picture You Want Post"), Image_Request_Code);
 
-
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UploadPostActivity.this, MainScreenActivity.class);
+                startActivity(intent);
+            }
+        });
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -266,7 +274,6 @@ public class UploadPostActivity extends AppCompatActivity {
                                 Intent intent = new Intent(UploadPostActivity.this, ViewPostActivity.class);
                                 intent.putExtra("postID",postID);
                                 intent.putExtra("Caption",Caption.getText().toString());
-
                                 startActivity(intent);
                             }
                         }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bku.cnpm19.R;
 import com.bku.cnpm19.ViewProfile;
@@ -27,7 +28,7 @@ import java.util.List;
 public class ViewUserAdapter extends RecyclerView.Adapter<ViewUserAdapter.ViewHolder> {
     static Context context;
     List<UserInfo> AllUserInfo;
-    private static AdapterView.OnItemClickListener listener;
+
 
     public ViewUserAdapter(Context context, List<UserInfo> TempList) {
 
@@ -55,7 +56,6 @@ public class ViewUserAdapter extends RecyclerView.Adapter<ViewUserAdapter.ViewHo
 
         //Loading image from Glide library.
         Glide.with(context).load(userInfo.getAvatarURL()).into(holder.avatarUser);
-
         holder.userName.setText(userInfo.getUsername());
 
         holder.email.setText(userInfo.getEmail());
@@ -68,9 +68,7 @@ public class ViewUserAdapter extends RecyclerView.Adapter<ViewUserAdapter.ViewHo
         return AllUserInfo.size();
     }
 
-    public void setOnItemClickListener(AdapterView.OnItemClickListener listener) {
-        this.listener = listener;
-    }
+
 
     class ViewHolder extends RecyclerView.ViewHolder {
 

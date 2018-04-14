@@ -322,9 +322,13 @@ public class EditProfileActivity extends AppCompatActivity {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
 
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
                             // Setting progressDialog Title.
-                            progressDialog.setTitle("Profile is updating...");
-
+                            progressDialog.setTitle("Please wait , we are saving what you edit "+ progress+"%");
+                            if(progress>=100) {
+                                Intent intent = new Intent(EditProfileActivity.this, ViewSelfProfile.class);
+                                startActivity(intent);
+                            }
                         }
                     });
         }

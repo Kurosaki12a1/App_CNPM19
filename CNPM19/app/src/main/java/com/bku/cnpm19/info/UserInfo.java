@@ -9,7 +9,7 @@ public class UserInfo {
     //public String password;
     private String username;
 
-    private String AvatarURL;
+    private String avatarURL;
 
     private String description;
 
@@ -21,11 +21,11 @@ public class UserInfo {
 
     private int follower;
 
-    public UserInfo(String email,String username,String AvatarURL,String description,String website
+    public UserInfo(String email,String username,String avatarURL,String description,String website
     ,String phoneNumber) {
         this.email=email;
         this.username=username;
-        this.AvatarURL=AvatarURL;
+        this.avatarURL=avatarURL;
         this.description=description;
         this.website=website;
         this.phoneNumber=phoneNumber;
@@ -41,7 +41,7 @@ public class UserInfo {
     }
 
     public String getAvatarURL() {
-        return AvatarURL;
+        return avatarURL;
     }
 
     public String getEmail(){return email;}
